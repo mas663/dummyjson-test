@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 
 export default function RegisterPage() {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState(""); // FIX: Kelima state ini dapat digabungkan menjadi satu state object untuk mempermudah pengelolaan form.
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  /**
+  /** // FIX: Komentar JSDoc ini kosong dan tidak memberikan informasi, sebaiknya dihapus atau diisi.
    * @param e
    */
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,32 +48,17 @@ export default function RegisterPage() {
     }
   };
 
+  // Kelas bersama untuk input agar tidak terjadi pengulangan kode (DRY)
+  const inputStyles =
+    "w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500";
+
   return (
-    <main
-      style={{
-        padding: "40px",
-        fontFamily: "sans-serif",
-        backgroundColor: "#f7fafc",
-        minHeight: "100vh",
-        color: "#000",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "400px",
-          margin: "0 auto",
-          backgroundColor: "white",
-          padding: "30px",
-          borderRadius: "8px",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
-          Buat Akun Baru
-        </h1>
+    <main className="p-10 font-sans bg-gray-50 min-h-screen text-black">
+      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center mb-6">Buat Akun Baru</h1>
 
         <form onSubmit={handleRegister}>
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-4">
             <label htmlFor="firstName">Nama Depan:</label>
             <input
               type="text"
@@ -81,16 +66,10 @@ export default function RegisterPage() {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "8px",
-                marginTop: "5px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={inputStyles}
             />
           </div>
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-4">
             <label htmlFor="lastName">Nama Belakang:</label>
             <input
               type="text"
@@ -98,16 +77,10 @@ export default function RegisterPage() {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "8px",
-                marginTop: "5px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={inputStyles}
             />
           </div>
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-4">
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -115,16 +88,10 @@ export default function RegisterPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "8px",
-                marginTop: "5px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={inputStyles}
             />
           </div>
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-4">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -132,16 +99,10 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "8px",
-                marginTop: "5px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={inputStyles}
             />
           </div>
-          <div style={{ marginBottom: "20px" }}>
+          <div className="mb-5">
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -149,26 +110,12 @@ export default function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "8px",
-                marginTop: "5px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={inputStyles}
             />
           </div>
           <button
             type="submit"
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "none",
-              borderRadius: "4px",
-              backgroundColor: "#28a745",
-              color: "white",
-              cursor: "pointer",
-            }}
+            className="w-full py-2 px-4 border-none rounded-md bg-green-600 text-white cursor-pointer hover:bg-green-700 transition-colors"
           >
             Daftar
           </button>
