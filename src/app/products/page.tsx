@@ -3,14 +3,12 @@
 import { useEffect, useState } from "react";
 import { Table, Button, message, Modal, Form, Input, InputNumber } from "antd";
 
-// Tipe data untuk produk
 type Product = {
   id: number;
   title: string;
   price: number;
 };
 
-// Komponen utama halaman produk
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,7 +28,7 @@ export default function ProductsPage() {
 
   // --- CREATE: Menambahkan produk baru ---
   const addProduct = async (values: { title: string; price: number }) => {
-    console.log("Mencoba menambahkan produk dengan data:", values); // LOG: Lihat data yang akan dikirim
+    console.log("Mencoba menambahkan produk dengan data:", values);
     const res = await fetch("https://dummyjson.com/products/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,15 +40,12 @@ export default function ProductsPage() {
       // LOG: Lihat respons dari API setelah berhasil menambahkan
       console.log("Respons API (Add):", result);
 
-      // Karena API dummyjson tidak benar-benar menyimpan, kita update state secara manual
-      // dengan data yang kita kirim + ID dari respons API
       const newProduct = { ...values, id: result.id };
       setProducts([newProduct, ...products]);
       message.success(`Produk "${values.title}" berhasil ditambahkan.`);
       return true;
     } else {
       message.error("Gagal menambahkan produk.");
-      // LOG: Lihat pesan error jika gagal
       console.error("Gagal menambahkan produk. Status:", res.status);
       return false;
     }
@@ -107,7 +102,6 @@ export default function ProductsPage() {
     }
   };
 
-  // --- Fungsi untuk Modal Form ---
   const showModal = (product: Product | null = null) => {
     setEditingProduct(product);
     if (product) {
@@ -143,14 +137,13 @@ export default function ProductsPage() {
     }
   };
 
-  // Konfigurasi kolom untuk tabel Ant Design
   const columns = [
     {
       title: "ID",
       dataIndex: "id",
       key: "id",
       sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
-    }, // Tambah ID & sorter
+    },
     { title: "Nama Produk", dataIndex: "title", key: "title" },
     {
       title: "Harga",
@@ -188,7 +181,7 @@ export default function ProductsPage() {
 
       <Modal
         title={editingProduct ? "Edit Produk" : "Tambah Produk Baru"}
-        open={isModalVisible} // 'visible' sudah deprecated, gunakan 'open'
+        open={isModalVisible}
         onOk={handleFormSubmit}
         onCancel={handleCancel}
         okText="Simpan"

@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 
 export default function RegisterPage() {
-  const [firstName, setFirstName] = useState(""); // FIX: Kelima state ini dapat digabungkan menjadi satu state object untuk mempermudah pengelolaan form.
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  /** // FIX: Komentar JSDoc ini kosong dan tidak memberikan informasi, sebaiknya dihapus atau diisi.
+  /**
    * @param e
    */
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,7 +48,6 @@ export default function RegisterPage() {
     }
   };
 
-  // Kelas bersama untuk input agar tidak terjadi pengulangan kode (DRY)
   const inputStyles =
     "w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500";
 

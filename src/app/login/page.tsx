@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState(""); // FIX: State untuk username dan password dapat digabungkan menjadi satu state object untuk pengelolaan yang lebih sederhana.
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,7 +15,7 @@ export default function LoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username: username, // FIX: Dapat disingkat menggunakan ES6 property shorthand menjadi hanya { username, password }.
+          username: username,
           password: password,
         }),
       });
@@ -23,17 +23,16 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        console.error("Login Gagal:", data.message); // FIX: Pesan error sebaiknya ditampilkan di UI untuk pengguna, bukan hanya di console.
+        console.error("Login Gagal:", data.message);
         return;
       }
 
-      console.log("Login Berhasil:", data); // FIX: Setelah login berhasil, token (data.token) harus disimpan (misalnya di localStorage) dan pengguna harus diarahkan ke halaman dashboard atau halaman utama.
+      console.log("Login Berhasil:", data);
     } catch (err) {
       console.error("Gagal terhubung ke server:", err);
     }
   };
 
-  // Kelas bersama untuk input agar tidak terjadi pengulangan kode (DRY)
   const inputStyles =
     "w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500";
 
